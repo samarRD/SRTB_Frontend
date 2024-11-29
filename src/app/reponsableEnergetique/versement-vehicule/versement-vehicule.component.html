@@ -1,0 +1,85 @@
+<h1 style="font-family: 'Times New Roman', Times, serif;margin-top: 80px ; color: rgb(74, 7, 74);" class="move">Liste des alimentations</h1>
+<div class="d-flex ">
+  <div class="input-icons">
+    <i style="margin-left: 100px;margin-top: 35px "class="fa fa-search icon"></i>
+      <input class="input-field" [(ngModel)]="VehiculeFilter" style="margin-left: 100px;margin-top: 30px;width: fit-content; text-align: center;" (keyup)="FilterFn()" placeholder="Filter"></div></div>
+      <p style="margin-top: -40px ;margin-left: 230px;  color: purple"><b>recherchez vehicule avec sa matricule :</b></p>
+                  <br>
+
+                    <table style="float:left; margin-left: 20px;"class="table table-hover " >
+                      <thead  class="bg-light" >
+                        <tr>
+                          <th scope="col">ID</th>
+                          <th scope="col">Date de voyage</th>
+                          <th scope="col">Service</th>
+                          <th scope="col">Matricule de vehicule</th>
+                          <th scope="col">Taux de consommation</th>
+                          <th scope="col"> versement</th>
+                          <th scope="col"></th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr  *ngFor="let v of getDistinctVoyages();let i=index ">
+
+                          <td>{{v.id}}</td>
+                          <td>{{v.date}}</td>
+                          <td>
+                          <ng-container *ngIf="v.date && v.vehiculerealise.matricule">
+                            <div *ngFor="let s of getServicesByDateAndMatricule(v.date, v.vehiculerealise.matricule)">
+                              {{ s }}<br>
+                            </div>
+                          </ng-container>
+                          </td>
+                          <td>{{v.vehiculerealise.matricule}}</td>
+                          <td>{{v.vehiculerealise.taux_consommation}}</td>
+                          <td>
+                              <div *ngFor="let versement of versementData ;">
+                                <div class="card" *ngIf="v.vehiculerealise.matricule === versement.vehicule.matricule && v.date===versement.date">
+                                   Quantité de gasoil : {{versement?.quantite_gasoil}},
+                                   Kilométrage du compteur : {{versement?.kilometrage_compteur}},
+                                   Date : {{versement?.date}}
+                                  <button type="button" class="btn_supprimer" (click)="delete(versement.id)" ><i class="fa fa-trash"></i></button>
+                                </div>
+                              </div>
+                          </td>
+                           <td >
+                              <button type="button" class="btn_add" data-toggle="modal" [attr.data-target]="'#exampleModal-' + i"  >Ajouter alimentation</button>
+                              <!--générer les modales correspondant à chaque véhicule.-->
+                              <div class="modal fade" id="exampleModal-{{i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Ajouter alimentation:  </h5>
+
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <p style="margin-left: 120px;color: rgb(169, 161, 173);">date d'alimentation {{v.date}}</p>
+                                      <form (ngSubmit)="createVersement(v.vehiculerealise.id,v.date)" [formGroup]="Ajouterform">
+                                        <div class="form-group">
+                                          <label for="quantite_gasoil">Quantité gasoil :</label>
+                                          <input type="text" class="form-control" id="quantite_gasoil" formControlName="quantite_gasoil" >
+                                          <small *ngIf="Ajouterform.controls['quantite_gasoil'].touched&&Ajouterform.controls['quantite_gasoil'].hasError('required')">*saisir la quantité de gasoil</small><br>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="kilometrage_compteur">kilometrage de compteur :</label>
+                                          <input type="text" class="form-control" id="kilometrage_compteur" formControlName="kilometrage_compteur" >
+                                          <small *ngIf="Ajouterform.controls['kilometrage_compteur'].touched&&Ajouterform.controls['kilometrage_compteur'].hasError('required')">*saisir le kilométrage de compteur</small><br>
+                                        </div>
+                                         <div class="modal-footer">
+                                          <button type="button" id="c" data-dismiss="modal">Close</button>
+                                          <button type="submit" class="butt" [disabled]="!Ajouterform.valid"  >valider</button>
+                                    </div>
+                                  </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </td>
+                        </tr>
+                      </tbody>
+                    </table>
+

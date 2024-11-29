@@ -1,0 +1,26 @@
+.navbar {
+
+  background-color: rgb(199, 165, 255);
+  height: 58px;
+
+  }
+  a:link {
+    color: #0a0212;
+    border-radius:  20px;
+  }
+
+  a:visited {
+    color:   #05010a;
+
+
+  }
+
+  a:focus {
+    border-radius:  20px;
+    background:white;
+  }
+
+  a:hover {
+    border-radius:  20px;
+    background: #ffffff;
+  }

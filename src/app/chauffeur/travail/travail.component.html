@@ -1,0 +1,38 @@
+  <h1 style="font-family: 'Times New Roman', Times, serif;margin-top: 80px ; color: rgb(74, 7, 74);" class="move" >Les affectations de travail</h1>
+  <div class="d-flex ">
+                    <table style="float:left; margin-top:70px ;margin-left:20px; margin-bottom:40px"class="table table-hover">
+                      <thead  class="bg-light" >
+                        <tr>
+                          <th scope="col" >Date de voyage</th>
+                          <th scope="col">Service</th>
+                          <th scope="col">Heure de départ</th>
+                          <th scope="col">Heure d'arrivée</th>
+                          <th scope="col">Chauffeur </th>
+                          <th scope="col" >Vehicule </th>
+                          <th scope="col"></th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let voyage of voyageData ">
+                          <th scope="col">
+                              {{voyage.date}}
+                        </th>
+                          <td>
+                            {{voyage.service.libelle}}
+                          </td>
+                          <td>{{voyage.service.heure_depart}}</td>
+                          <td>{{voyage.service.heure_arrive}}</td>
+                          <td>
+                            {{voyage.user.username}}
+                          </td>
+                          <td>
+                           {{voyage.vehicule.matricule}}
+                          </td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+

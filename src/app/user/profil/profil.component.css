@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap");
+
+body {
+  background: #f2eff3;
+
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+}
+/*body {
+  background: #f2eff3;
+  background: -webkit-linear-gradient(to bottom, #eee2f7, #f4baff);
+  background: linear-gradient(to bottom, #ebd5fd, #ee9bff);
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+}*/
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.card {
+  width: 500px;
+  max-width: 500px;
+  min-height: 450px;
+  position: relative;
+  text-align: center;
+  margin:80px;
+  background: #fff;
+  border-radius: 80px;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.name {
+  color: #394f63;
+}
+.title {
+  color: #cc0ce6;
+  font-size: 20px;
+  font-weight: 350;
+  margin-top: 20px;
+margin-bottom: -20px;
+  padding: 10px 0px;
+}
+.description {
+  font-size: 18px;
+  font-weight: 300;
+  padding: 10px 22px;
+}
+.message {
+  font-size: 22px;
+  background: #0088ff;
+  background: -webkit-linear-gradient(to right, #1da1f2, #0088ff);
+  background: linear-gradient(to right, #1da1f2, #0088ff);
+  box-shadow: 0 0 20px 4px #ffffff, 0 0 20px 0px #0088ff;
+  border-radius: 32px;
+  padding: 10px;
+  margin: 100px 28px;
+}
+.message:hover {
+  box-shadow: 0 0 20px 0px #ffffff, 0 4px 20px 0px #0088ff;
+  transition: 0.3s;
+}
+.links {
+  margin: 42px 0;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}
+small{
+  font-size: 3mm;
+  color: rgb(185, 5, 5);
+}
+
+.myRightCtn {
+  position: relative;
+  background-image: linear-gradient(45deg, #f046ff, #9b00e8);
+  border-radius: 25px;
+  height: 100%;
+  padding: 25px;
+  color: rgb(192, 192, 192);
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#i{
+  margin-left: -5px;
+margin-top: 12px;
+position: absolute;
+}
+
+.myLeftCtn .myInput {
+  width: 270px;
+  border-radius: 25px;
+  padding: 10px;
+  padding-left: 50px;
+  border: none;
+  -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+}
+.myLeftCtn .myInput:focus {
+  outline: none;
+}
+.myForm {
+  position: relative;
+  margin-top: 30px;
+  margin-left: 120px;
+}
+.myLeftCtn .butt {
+  background: linear-gradient(45deg, #bb36fd, #9b00e8);
+  color: #fff;
+  width: 230px;
+  border: none;
+  border-radius: 25px;
+  padding: 10px;
+  margin-left: 20px;
+  -webkit-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+}
+.myLeftCtn .butt:hover {
+  background: linear-gradient(45deg, #c85bff, #b726ff);
+}
+.myLeftCtn .butt:focus {
+  outline: none;
+}
+.myLeftCtn .fas {
+  position: relative;
+  color: #bb36fd;
+  left: 30px;
+}
+.butt_out {
+  background: transparent;
+  color: #fff;
+  width: 120px;
+  border: 2px solid#fff;
+  border-radius: 25px;
+  padding: 10px;
+  -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+}
+.butt_out:hover {
+  border: 2px solid#eecbff;
+}
+.butt_out:focus {
+  outline: none;
+}
+
+.div{
+  display:flex ;
+  flex-direction:row;
+  justify-content:space-between;
+}

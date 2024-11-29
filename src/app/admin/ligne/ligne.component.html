@@ -1,0 +1,83 @@
+<h1 style="font-family: 'Times New Roman', Times, serif;margin-top: 0px ; color: rgb(74, 7, 74);" class="move">Liste des lignes</h1>
+
+<div style="padding: 5px;" >
+  <button type="button"  data-toggle="modal" data-target="#exampleModal"   class="button3"><i class="fa-solid fa-add" ></i></button>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Nouvelle ligne</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="createLigne()" [formGroup]="Ajouterform" >
+            <div >
+              <label for="recipient-name" class="col-form-label">libellé :</label>
+              <input type="text" class="form-control" id="recipient-name" formControlName="libelle"   >
+              <small *ngIf="Ajouterform.controls['libelle'].touched&&Ajouterform.controls['libelle'].hasError('required')">*saisir la libellé</small><br>
+            </div>
+            <div >
+              <label for="recipient-name" class="col-form-label">kilométrage :</label>
+              <input type="text" class="form-control" id="recipient-name" formControlName="kilometrage" >
+              <small *ngIf="Ajouterform.controls['kilometrage'].touched&&Ajouterform.controls['kilometrage'].hasError('required')">*saisir une kilométrage</small><br>
+            </div>
+            <div >
+              <label for="recipient-name" class="col-form-label" >Arret de départ</label>
+              <select class="form-select" id="recipient-name" name="id_arretdepart" formControlName="id_arretdepart">
+                <option *ngFor="let arret of ArretData ;"  [value]='arret.id'>{{arret.libelle}}</option>
+              </select>
+              <small *ngIf="Ajouterform.controls['id_arretdepart'].touched&&Ajouterform.controls['id_arretdepart'].hasError('required')">*selectionner l'arret de depart' </small>
+            </div>
+            <div >
+              <label for="recipient-name" class="col-form-label" >Arret d'arrivée:</label>
+              <select class="form-select" id="recipient-name" name="id_arretarrivee" formControlName="id_arretarrivee">
+                <option *ngFor="let arret of ArretData ;"  [value]='arret.id'>{{arret.libelle}} </option>
+              </select>
+              <small *ngIf="Ajouterform.controls['id_arretarrivee'].touched&&Ajouterform.controls['id_arretarrivee'].hasError('required')">*selectionner l'arret arrivée </small>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="c" data-dismiss="modal">Close</button>
+              <button type="submit" class="butt" [disabled]="!Ajouterform.valid">Ajouter une ligne </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!---------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div class="d-flex ">
+<div class="input-icons">
+  <i class="fa fa-search icon"></i>
+  <input class="input-field" [(ngModel)]="ligneFilter"  style="width: fit-content; text-align: center;" (keyup)="FilterFn()" placeholder="Filter"></div></div>
+  <p style="margin-top: -40px ;margin-left: 180px; color: purple;"><b>recherchez ligne avec le libellé :</b></p>
+                <br>
+                  <table style="float:left; margin-left:85px; margin-bottom:6px"class="table table-hover" >
+                    <thead  class="bg-light" >
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">libellé</th>
+                        <th scope="col">kilométrage</th>
+                        <th scope="col">Arret départ</th>
+                        <th scope="col">Arret arrivée</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let ligne of ligneData">
+                        <th scope="row">{{ligne.id}}</th>
+                        <td>{{ligne.libelle}}</td>
+                        <td>{{ligne.kilometrage}}</td>
+                        <td>{{ligne?.arretdepart?.libelle}}</td>
+                        <td>{{ligne?.arretarrivee?.libelle}}</td>
+                        <td><button type="button" class="btn_supprimer" (click)="delete(ligne.id)" ><i class="fa fa-trash"></i></button></td>
+                        <td><button type="button" class="btn_modifier" routerLink="/modifierLigne/{{ligne.id}}"><i class="fas fa-edit"></i></button></td>
+
+
+                      </tr>
+                    </tbody>
+                  </table>
+
+

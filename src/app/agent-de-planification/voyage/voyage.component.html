@@ -1,0 +1,134 @@
+
+<h1 style="font-family: 'Times New Roman', Times, serif;margin-top: 80px ; color: rgb(74, 7, 74);" class="move" *ngIf="isUserAuthenticated() && role()=='Agent de planification'">Liste des planifications</h1>
+<h1 style="font-family: 'Times New Roman', Times, serif;margin-top: 80px ; color: rgb(74, 7, 74);" class="move" *ngIf="isUserAuthenticated() && role()=='Responsable recette'">Liste des voyages</h1>
+      <div style="padding: 5px;" >
+        <button  style="margin-left: 530px ; margin-bottom: -10px;" type="button"  data-toggle="modal" data-target="#exampleModal"   class="button3" *ngIf="isUserAuthenticated() && role()=='Agent de planification'"><i class="fa-solid fa-add" ></i></button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nouvelle planification </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form (ngSubmit)="createVoyage()" [formGroup]="Ajouterform" >
+                  <div >
+                    <label for="recipient-name" class="col-form-label">Service :</label>
+                    <select class="form-select"  id="recipient-name"   name="id_service" formControlName="id_service" >
+                      <option *ngFor="let Service of serviceData ;" [value]='Service.id'>{{Service.libelle}}</option>
+                      </select>
+                      <small *ngIf="Ajouterform.controls['id_service'].touched&&Ajouterform.controls['id_service'].hasError('required')">*selectionner le service</small><br>
+                  </div>
+                  <div >
+                    <label for="recipient-name" class="col-form-label">Chauffeur planifié :</label>
+                    <select  class="form-select"  id="recipient-name"   name="id_user" formControlName="id_user" >
+                      <option *ngFor="let User of userData ;" [value]='User.id'>{{User.username}}</option>
+                      </select></div>
+                      <small *ngIf="Ajouterform.controls['id_user'].touched&&Ajouterform.controls['id_user'].hasError('required')">*selectionner le chauffeur</small><br>
+                  <div >
+                    <label for="recipient-name" class="col-form-label">Vehicule planifié :</label>
+                    <select  class="form-select"  id="recipient-name"  name="id_vehicule" formControlName="id_vehicule" >
+                      <option *ngFor="let vehicule of vehiculeData ;" [value]='vehicule.id'>{{vehicule.matricule}}</option>
+                      </select></div>
+                      <small *ngIf="Ajouterform.controls['id_vehicule'].touched&&Ajouterform.controls['id_vehicule'].hasError('required')">*selectionner le véhicule</small><br>
+                      <div >
+                        <label for="recipient-name" class="col-form-label">Date de jour:</label>
+                        <input type="date" class="form-control" id="recipient-name" formControlName="date"   >
+                        <small *ngIf="Ajouterform.controls['date'].touched&&Ajouterform.controls['date'].hasError('required')">*saisir la date</small>
+                      </div>
+                      <br>
+                  <div class="modal-footer">
+                    <button type="button" id="c" data-dismiss="modal">Close</button>
+                    <button type="submit" class="butt" [disabled]="!Ajouterform.valid">valider</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+  <!---------------------------------------------------------------------------------------------------------------------------------------------------------------->
+  <div class="d-flex ">
+    <div class="input-icons">
+      <i class="fa fa-search icon"></i>
+      <input class="input-field" [(ngModel)]="voyageFilter"  style="width: fit-content; text-align: center;margin-left: 90px; margin-top: 20px;" (keyup)="FilterFn()" placeholder="Filter"></div></div>
+      <p style="margin-top: -40px ;margin-left: 260px; color: purple;"><b>recherchez planification avec l'id :</b></p>
+                    <br>
+                    <form  >
+                      <div style="width: fit-content; text-align: center; margin-left:20px ;" class="btn-group" role="group" aria-label="Basic radio toggle button group">
+
+                        <input type="radio" class="btn-check" name="choix" id="btn-realisation" autocomplete="off" (click)="choisir('realisation')"  *ngIf="isUserAuthenticated() && role()=='Agent de planification' ">
+                        <label class="btn btn-outline-primary" for="btn-realisation">Réalisation</label>
+
+                        <input type="radio" class="btn-check" name="choix" id="btn-validation" autocomplete="off" (click)="choisir('validation')"  *ngIf="isUserAuthenticated() && role()=='Responsable recette' ">
+                        <label class="btn btn-outline-primary" for="btn-validation">Après validation</label>
+                      </div>
+                      <table style="float:left; margin-left:20px; margin-bottom:40px"class="table table-hover">
+                        <thead  class="bg-light" >
+                          <tr>
+                            <th scope="col" >ID</th>
+                            <th scope="col" >Date </th>
+                            <th scope="col">Service</th>
+                            <th scope="col">Heure départ</th>
+                            <th scope="col">Heure arrivée</th>
+                            <th scope="col">Chauffeur planifié</th>
+                            <th scope="col" >Vehicule planifiée</th>
+                            <th scope="col">Chauffeur remplaçant</th>
+                            <th scope="col">Vehicule remplaçante</th>
+                            <th scope="col">Nombre de voyageurs</th>
+                            <th scope="col">Recette</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let voyage of voyageData ; let i=index" [formGroup]="setForm(i)">
+                            <th scope="col" >{{voyage.id}}</th>
+                            <td >
+                              <div >
+                              <input style="width: 150px;" type="text" class="form-control" id="recipient-name" name="date_voyage" formControlName="date_voyage"  readonly>
+                            </div>
+                          </td>
+                            <td><div >
+                              <input style="width: 150px;" type="text" class="form-control" id="recipient-name" name="service_id" formControlName="service_id"  readonly>
+                            </div>
+                            </td>
+                            <td><input style="width: 150px;" type="text" class="form-control" id="recipient-name" name="heure_depart" formControlName="heure_depart"  readonly></td>
+                            <td><input style="width: 150px;" type="text" class="form-control" id="recipient-name" name="heure_arrive" formControlName="heure_arrive"  readonly></td>
+                            <td>
+                                <input style="width: 150px;" type="text" class="form-control" id="recipient-name" name="user_id" formControlName="user_id"  readonly>
+                            </td>
+                            <td>
+                              <input style="width: 150px;" type="text" class="form-control" id="recipient-name" name="vehicule_id" formControlName="vehicule_id"  readonly>
+                            </td>
+                            <td>
+                              <select style="width: 170px;" class="form-select" formControlName="userrealise_id" name="userrealise_id" [(ngModel)]="selectedUserRealiseId[i]"><!--[(ngModel)] pour lier les valeurs sélectionnées aux variables selectedUserRealiseId[i]-->
+                                <option *ngFor="let u of userrData" [value]="u.id" [disabled]="isInputDisabled || v">{{u.username}}</option>
+                              </select>
+                            </td>
+                            <td>
+                              <select style="width: 170px;" class="form-select" formControlName="vehiculerealise_id" [(ngModel)]="selectedVehiculeRealiseId[i]" >
+                                <option *ngFor="let ve of vehiculerData" [value]="ve.id" [disabled]="isInputDisabled || v">{{ve.matricule}}</option>
+                              </select>
+                            </td>
+                            <td>
+                              <div >
+                                <input style="width: 150px;" type="text" class="form-control" id="recipient-name" formControlName="nbr"  name="nbr" [(ngModel)]="C[i].nbr_voyageur" [readOnly]="isInputDisabled || r " >
+                              </div>
+                            </td>
+                            <td>
+                              <div >
+                                <input style="width: 150px;" type="text" class="form-control" id="recipient-name" formControlName="rect"  name="rect" [(ngModel)]="C[i].recette" [readOnly]="isInputDisabled || r"  >
+                              </div>
+                            </td>
+                             <td> <button type="button" class="btn_supprimer" (click)="delete(voyage.id)" *ngIf="isUserAuthenticated() && role()=='Agent de planification' "><i class="fa fa-trash"></i></button>
+                            </td>
+                            <td><button type="button" class="btn_modifier" (click)="update(i)" *ngIf="isUserAuthenticated() && role()=='Agent de planification' "><i class="fas fa-edit"></i></button></td>
+                            <td><button type="button" class="btn_modifier" (click)="updateV(i)" *ngIf="isUserAuthenticated() && role()=='Responsable recette' "><i class="fas fa-edit"></i></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+  </form>
+

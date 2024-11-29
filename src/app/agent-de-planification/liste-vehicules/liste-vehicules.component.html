@@ -1,0 +1,73 @@
+
+<h1 style="font-family: 'Times New Roman', Times, serif;margin-top: 80px ; color: rgb(74, 7, 74);" class="move">Liste des vehicules</h1>
+
+<div class="d-flex ">
+  <div class="input-icons">
+    <i style="margin-left: 100px;margin-top: 35px "class="fa fa-search icon"></i>
+      <input class="input-field" [(ngModel)]="VehiculeFilter"  style="margin-left: 100px;margin-top: 30px;width: fit-content; text-align: center;" (keyup)="FilterFn()" placeholder="Filter"></div></div>
+      <p style="margin-top: -40px ;margin-left: 230px;  color: purple"><b>recherchez vehicule avec sa matricule :</b></p>
+                  <br>
+
+                    <table style="float:left; margin-left: 20px;"class="table table-hover " >
+                      <thead  class="bg-light" >
+                        <tr>
+                          <th scope="col">ID</th>
+                          <th scope="col">Matricule</th>
+                          <th scope="col">Date mise en marche</th>
+                          <th scope="col">Marque</th>
+                          <th scope="col">Etat de véhicule</th>
+                          <th scope="col"></th>
+                          <th scope="col"></th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let vehicule of vehiculeData ;let i=index" [formGroup]="setForm(i)">
+                          <th scope="row">{{vehicule.id}}</th>
+                          <td>{{vehicule.matricule}}</td>
+                          <td>{{vehicule.datemise_enmarche}}</td>
+                          <td>{{vehicule.marque.libelle}}</td>
+                          <div hidden>  {{Rstatus(vehicule.status)}}</div>
+                          <td>
+                            <span  [ngClass]="Classvehicule"  style="border-radius:30px ;width: 90px; height : 25px; text-align: center;">{{Rstatus(vehicule.status)}}</span>
+                          </td>
+                          <td></td>
+
+                           <td >
+
+                              <button type="button" class="btn_ref" (click)="panne(vehicule)"  data-toggle="modal" [attr.data-target]="'#exampleModal-' + i">En panne</button>
+                           </td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+
+
+                    <div *ngFor="let vehicule of vehiculeData; let i = index">
+                      <div class="modal fade" id="exampleModal-{{i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Description de panne</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form [formGroup]="setForm(i)">
+
+                                <div class="form-group">
+                                  <label for="description">Description</label>
+                                  <textarea class="form-control" id="description" rows="5" formControlName="description" [(ngModel)]="C[i].description"></textarea>
+                                </div>
+                            <div class="modal-footer">
+                              <button type="button" id="c" data-dismiss="modal">Close</button>
+                              <button type="submit" class="butt" (click)="update(i)" >valider</button>
+                            </div>
+                           </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+

@@ -1,0 +1,217 @@
+<section style="margin-top:100px; margin-left: 80px;">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+    <div class="col-xl-4 col-sm-6 col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between px-md-1">
+            <div class="align-self-left" >
+              <i class="fas fa-bus fa-3x" style="color: rgb(154, 74, 230);" ></i>
+            </div>
+              <div class="input_container">
+                <h5 class="card-title text-uppercase text-muted mb-0">liste des véhicules</h5><br>
+              <select class="form-select"  [(ngModel)]="vehiculeSelected"  (change)="vehiculeChanged($event.target)">
+                <option  *ngFor="let vehicule of vehiculeData"  [value]="vehicule.id">{{vehicule.matricule}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-sm-6 col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between px-md-5">
+            <div class="align-self-left" style="margin-left: -40px; margin-top: -5px;">
+              <i class="fas fa-calendar fa-3x" style="color: rgb(182, 223, 248);"></i>
+            </div>
+            <div class="text-end">
+              <h5 class="card-title text-uppercase text-muted mb-0">Jours de voyage</h5><br>
+              <div class="d-flex" >
+                <div class="col-md-9" style="margin-left:-40px;">
+                  <select class="form-select" [(ngModel)]="DaySelected" name="sourceBankAccount" (change)="DayChanged($event.target)">
+                    <option *ngFor="let day of ListDay" [value]="day">{{day}}</option>
+                  </select>
+                </div>
+                <div class="col-md-9">
+                  <select class="form-select" [(ngModel)]="Day2Selected" name="sourceBankAccount" (change)="Day2Changed($event.target)">
+                    <option *ngFor="let day of ListDay" [value]="day">{{day}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div style="width: 600px;" class="col-xl-3 col-sm-6 col-12 mb-4">
+      <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between px-md-1">
+              <div >
+                <div class="row">
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow col-xl-3 col-sm-4 col-10 mb-4">
+                      <i class="fas fa-chart-bar" style="margin-left: -10px;"></i>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Kilométrage</h5>
+
+                  </div>
+                  <div class="col" *ngIf="isDaySelected">
+                    <h3 *ngIf="Performance.kilometrage" class="text-success">{{Performance.kilometrage}} Km</h3>
+                  </div>
+                  <div class="col" *ngIf="isDay2Selected">
+
+                    <h3 *ngIf="Rapport2.kilometrage" class="text-success">{{Rapport2.kilometrage}} Km</h3>
+                  </div>
+                  <p class="mt-3 mb-0  text-sm">
+                    <span *ngIf="isDaySelected" class="text-nowrap" >Somme de Kilométrage parcouru par jour</span>
+                    <span *ngIf="isDay2Selected" class="text-nowrap">Somme de Kilométrage parcouru entre les deux dates sélectionnés</span>
+                  </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 600px;" class="col-xl-3 col-sm-6 col-12 mb-4">
+      <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between px-md-1">
+              <div >
+                <div class="row">
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow col-xl-3 col-sm-4 col-10 mb-4">
+                      <i class="fas fa-chart-bar" style="margin-left: -10px;"></i>
+                    </div>
+                  </div>
+                  <div class="col" >
+                    <h5 class="card-title text-uppercase text-muted mb-0">consommation de carburant</h5>
+
+                  </div>
+                  <div class="col" *ngIf="isDaySelected">
+
+                    <h3 *ngIf="Performance.consommation_carburant" class="text-success">{{Performance.consommation_carburant}} L</h3>
+                  </div>
+                  <div class="col" *ngIf="isDay2Selected">
+
+                    <h3 *ngIf="Rapport2.consommation_carburant" class="text-success">{{Rapport2.consommation_carburant}} L</h3>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span *ngIf="isDaySelected" class="text-nowrap"> consommation de carburant par jour</span>
+                    <span *ngIf="isDay2Selected" class="text-nowrap"> consommation de carburant entre les deux dates sélectionnés</span>
+                  </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 600px;" class="col-xl-3 col-sm-6 col-12 mb-4">
+      <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between px-md-1">
+              <div >
+                <div class="row">
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow col-xl-3 col-sm-4 col-10 mb-4">
+                      <i class="fas fa-chart-bar" style="margin-left: -10px;"></i>
+                    </div>
+                  </div>
+                  <div class="col" >
+                    <h5 class="card-title text-uppercase text-muted mb-0">Taux de consommation</h5>
+
+                  </div>
+                  <div class="col" *ngIf="isDaySelected">
+
+                    <h3 *ngIf="Performance.taux_consommation" class="text-success">{{Performance.taux_consommation}} %</h3>
+                  </div>
+                  <div class="px-md-1" *ngIf="isDaySelected">
+                    <div class="progress mt-3 mb-1 rounded" style="height: 7px">
+                      <div
+                           class="progress-bar"
+                           role="progressbar"
+                           [class.pink]="Performance.taux_consommation"
+                           [style.width]="Performance.taux_consommation + '%'"
+                           aria-valuenow="80"
+                           aria-valuemin="0"
+                           aria-valuemax="100"
+                           ></div>
+                    </div>
+                  </div>
+                  <div class="col" *ngIf="isDay2Selected">
+
+                    <h3 *ngIf="Rapport2.taux_consommation" class="text-success">{{Rapport2.taux_consommation}} %</h3>
+                  </div>
+                  <div class="px-md-1"  *ngIf="isDay2Selected">
+                    <div class="progress mt-3 mb-1 rounded" style="height: 7px">
+                      <div
+                           class="progress-bar "
+                           role="progressbar"
+                           [class.pink]="Rapport2.taux_consommation"
+                           [style.width]="Rapport2.taux_consommation + '%'"
+                           aria-valuenow="80"
+                           aria-valuemin="0"
+                           aria-valuemax="100"
+                           ></div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span *ngIf="isDaySelected" class="text-nowrap">Taux de consommation par jour</span>
+                    <span *ngIf="isDay2Selected" class="text-nowrap">Taux de consommation entre les deux dates sélectionnés</span>
+                  </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div  style="width: 600px;" class="col-xl-3 col-sm-6 col-12 mb-4">
+      <div class="card">
+
+        <div class="card-body">
+          <div class="d-flex justify-content-between px-md-1">
+            <div >
+              <div class="row">
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow col-xl-3 col-sm-4 col-10 mb-4">
+                    <i class="fas fa-chart-bar" style="margin-left: -10px;"></i>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Taux de consommation totale</h5>
+                  <h3 *ngIf="Rapport1.taux_consommation" class="text-success">{{Rapport1.taux_consommation }} %</h3>
+                </div>
+
+                <div class="px-md-1">
+                  <div class="progress mt-3 mb-1 rounded" style="height: 7px">
+                    <div
+                         class="progress-bar"
+                         role="progressbar"
+                         [style.width]="Rapport1.taux_consommation + '%'"
+                         [class.green]="Rapport1.taux_consommation"
+                         aria-valuenow="80"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         ></div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-sm">
+                  <span class="text-nowrap">Taux de consommation totale de carburant</span>
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

@@ -1,0 +1,81 @@
+<h1 style="font-family: 'Times New Roman', Times, serif;margin-top: 0px ; color: rgb(74, 7, 74);" class="move">Liste des services</h1>
+<div style="padding: 5px;" >
+  <button type="button"  data-toggle="modal" data-target="#exampleModal"   class="button3"><i class="fa-solid fa-add" ></i></button>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Nouveau service</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="createService()" [formGroup]="Ajouterform" > <!-- lier le formulaire au groupe de contrôles de formulaire Ajouterform.-->
+            <div >
+              <label for="recipient-name" class="col-form-label">libellé:</label>
+              <input type="text" class="form-control" id="recipient-name" formControlName="libelle"> <!-- Il est associé au contrôle de formulaire libelle du groupe de contrôles Ajouterform en utilisant l'attribut formControlName.-->
+              <small *ngIf="Ajouterform.controls['libelle'].touched&&Ajouterform.controls['libelle'].hasError('required')">*saisir la libelle</small>
+            </div>
+            <div >
+              <label for="recipient-name" class="col-form-label" >Lignes:</label>
+              <select class="form-select" id="recipient-name" name="id_ligne" formControlName="id_ligne">
+                <option *ngFor="let ligne of LigneData ;"  [value]='ligne.id'>{{ligne.libelle}} </option>
+              </select>
+              <small *ngIf="Ajouterform.controls['id_ligne'].touched&&Ajouterform.controls['id_ligne'].hasError('required')">*selectionner la ligne </small>
+            </div>
+
+            <div >
+              <label for="recipient-name" class="col-form-label">heure de depart:</label>
+              <input type="time" class="form-control" id="recipient-name" formControlName="heure_depart" >
+              <small *ngIf="Ajouterform.controls['heure_depart'].touched&&Ajouterform.controls['heure_depart'].hasError('required')">*saisir l'heure de depart</small>
+            </div>
+            <div >
+              <label for="recipient-name" class="col-form-label">heure d'arrivée:</label>
+              <input type="time" class="form-control" id="recipient-name" formControlName="heure_arrive" >
+              <small *ngIf="Ajouterform.controls['heure_arrive'].touched&&Ajouterform.controls['heure_arrive'].hasError('required')">*saisir l'heure d'arrivée</small>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="c" data-dismiss="modal">Close</button>
+              <button type="submit" class="butt" [disabled]="!Ajouterform.valid">Ajouter service</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!---------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div class="d-flex ">
+<div class="input-icons">
+  <i class="fa fa-search icon"></i>
+  <input class="input-field" [(ngModel)]="serviceFilter"  style="width: fit-content; text-align: center;" (keyup)="FilterFn()" placeholder="Filter"></div></div>
+  <p style="margin-top: -40px ;margin-left: 140px; color: purple;"><b>recherchez service avec le libellé :</b></p>
+                <br>
+                  <table  style="float:left; margin-left:65px; margin-bottom:6px" class="table table-hover ">
+                    <thead  class="bg-light" >
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">libelle</th>
+                        <th scope="col">ligne</th>
+                        <th scope="col">Heure de départ</th>
+                        <th scope="col">Heure d'arrivée</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let service of serviceData ;">
+                        <th scope="row">{{service?.id}}</th>
+                        <td>{{service?.libelle}}</td>
+                        <td>{{service?.ligne?.libelle}}</td>
+                        <td>{{service?.heure_depart}}</td>
+                        <td>{{service?.heure_arrive}}</td>
+                        <td><button type="button" class="btn_supprimer" (click)="delete(service.id)" ><i class="fa fa-trash"></i></button></td>
+                        <td><button type="button" class="btn_modifier" routerLink="/modifierService/{{service.id}}"><i class="fas fa-edit"></i></button></td>
+
+
+                      </tr>
+                    </tbody>
+                  </table>
+
+

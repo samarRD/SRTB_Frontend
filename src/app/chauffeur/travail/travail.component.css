@@ -1,0 +1,27 @@
+.move {
+  position: relative; /* make the title position relative */
+  animation: moveTitle 20s linear infinite;
+}
+
+@keyframes moveTitle {
+  0% {
+    left: -100%; /* start the title from the left side of the screen */
+    opacity: 0; /* make the title invisible */
+  }
+  50% {
+    left: 50%; /* move the title to the middle of the screen */
+    opacity: 1; /* make the title visible */
+  }
+  100% {
+    left: 100%; /* move the title to the right side of the screen */
+    opacity: 0; /* make the title invisible */
+  }
+}
+thead tr {
+  background-color: #aa72eb;
+  color: #fff;
+}
+
+thead th {
+  width: 25%;
+}

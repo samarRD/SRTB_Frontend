@@ -1,0 +1,182 @@
+.page{
+
+  font-size: 4mm;
+}
+.logo_container h1 {
+  color: rgba(255, 255, 255, 0.719);
+  font-weight: bolder;
+  font-size: 14mm;
+ text-align: center;
+}
+.logo_container span{
+  color:#192953a1 ;}
+.content{
+  display: block;
+  align-items: center;
+  min-width: fit-content;
+}
+.dashboard_top{
+  box-shadow: 1px 4px 10px #888888;
+  background-color: #ffffff6e;
+  padding: 20px;
+  display: block;
+  min-width: fit-content;
+}
+.btn_supprimer{
+  cursor: pointer;
+  padding: 10px;
+  border-radius:10px ;
+  background-color:rgba(204, 15, 15, 0.719) ;
+  margin-bottom: 5px;
+  font-size: 4mm;
+  border: none;
+  color: white;
+  box-shadow: 3px 2px 10px #0707076b;
+}
+.btn_stat{
+  cursor: pointer;
+  padding: 4px ;
+  border-radius:30px ;
+  background-color:rgba(76, 39, 77, 0.719) ;
+  margin-bottom: 5px;
+  font-size: 4mm;
+  border: none;
+  color: white;
+  width: 70px;
+  box-shadow: 3px 2px 10px #0606066b;
+}
+.btn_modifier{
+  cursor: pointer;
+  padding: 10px ;
+  border-radius:10px ;
+  background-color:rgba(22, 152, 204, 0.719) ;
+  margin-bottom: 5px;
+  font-size: 4mm;
+  border: none;
+  color: white;
+  box-shadow: 3px 2px 10px #1312126b;
+}
+.btn_supprimer:hover{
+  transition: opacity 0.15s;
+    opacity: 0.8;
+  }
+.btn_modifier:hover{
+  transition: opacity 0.15s;
+    opacity: 0.8;
+  }
+.btn_acc{
+  cursor: pointer;
+  padding: 10px ;
+  border-radius:10px ;
+  background-color:rgba(13, 169, 34, 0.719) ;
+  margin-bottom: 5px;
+  font-size: 3mm;
+  border: none;
+  color: white;
+  box-shadow: 3px 2px 10px #0e0d0d6b;
+}
+.btn_ref{
+  cursor: pointer;
+  padding: 10px ;
+  border-radius:10px ;
+  background-color:rgba(0, 0, 0, 0.719) ;
+  margin-bottom: 5px;
+  font-size: 3mm;
+  margin-left: 10px;
+  border: none;
+  color: white;
+  box-shadow: 3px 2px 10px #0c0c0c6b;
+}
+
+.input-icons i {
+  position: absolute;
+}
+
+.input-icons {
+  width: 100%;
+  margin-bottom: 10px;
+  margin-left: 450px;
+}
+
+.icon {
+  padding: 10px;
+  min-width: 50px;
+  padding-left: 20px;
+  margin-top: 4px;
+  color: purple;
+}
+
+.input-field {
+  width: 100%;
+  width: 270px;
+  border-radius: 60px;
+  padding: 10px;
+  padding-left: 20px;
+  border: none;
+  -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+text-align: center;
+}
+.button3 {
+  color: white;
+  background: linear-gradient(to right, #6b31d7, #c79ad7);
+  border-radius: 100px;
+  height: 40px;
+  width: 205px;
+  margin-left: 455px;
+  margin-bottom: 1%;
+  transition: 0.2s ease-in-out;
+  border: none;
+  -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+.button3:hover {
+  border-radius: 10px;
+}
+button[type="submit"] {
+  padding: 7px 25px;
+  background-color: purple;
+  border-radius: 10px;
+  color: white;
+  border: none;
+}
+
+button[type="submit"]:hover {
+  background-color: rgb(168, 8, 168);
+}
+#c{
+  background-color: rgb(67, 63, 67);
+  color:white;
+  border-radius: 10px;
+  padding: 7px 20px;
+  border: none;
+}
+small{
+  font-size: 3mm;
+  color: rgb(185, 5, 5);
+  margin-right: 30px;
+  margin-left: 30px;
+}
+.move {
+  position: relative; /* make the title position relative */
+  animation: moveTitle 20s linear infinite;
+}
+
+@keyframes moveTitle {
+  0% {
+    left: -100%; /* start the title from the left side of the screen */
+    opacity: 0; /* make the title invisible */
+  }
+  50% {
+    left: 50%; /* move the title to the middle of the screen */
+    opacity: 1; /* make the title visible */
+  }
+  100% {
+    left: 100%; /* move the title to the right side of the screen */
+    opacity: 0; /* make the title invisible */
+  }
+}

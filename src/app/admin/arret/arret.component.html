@@ -1,0 +1,59 @@
+<h1 style="font-family: 'Times New Roman', Times, serif;margin-top: 0px ; color: rgb(74, 7, 74);" class="move">Liste des arrets</h1>
+<div style="padding: 5px;" >
+  <button type="button"  data-toggle="modal" data-target="#exampleModal"   class="button3"><i class="fa-solid fa-add" ></i></button>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Nouvelle arret</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="createArret()" [formGroup]="Ajouterform" >
+            <div >
+              <label for="recipient-name" class="col-form-label">libellé :</label>
+              <input type="text" class="form-control" id="recipient-name" formControlName="libelle"   >
+              <small *ngIf="Ajouterform.controls['libelle'].touched&&Ajouterform.controls['libelle'].hasError('required')">*saisir la libellé</small><br>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="c" data-dismiss="modal">Close</button>
+              <button type="submit" class="butt" [disabled]="!Ajouterform.valid">Ajouter une arret </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!---------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div class="d-flex ">
+<div class="input-icons">
+  <i class="fa fa-search icon"></i>
+  <input class="input-field" [(ngModel)]="ArretFilter"  style="width: fit-content; text-align: center;" (keyup)="FilterFn()" placeholder="Filter"></div></div>
+  <p style="margin-top: -40px ;margin-left: 170px; color: purple;"><b>recherchez arret avec le libellé :</b></p>
+                <br>
+                  <table style="float:left; margin-left:85px; margin-bottom:6px"class="table table-hover" >
+                    <thead  class="bg-light" >
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">libellé</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let arret of ArretData">
+                        <th scope="row">{{arret.id}}</th>
+                        <td>{{arret.libelle}}</td>
+                        <td><button type="button" class="btn_supprimer" (click)="delete(arret.id)" ><i class="fa fa-trash"></i></button></td>
+                        <td><button type="button" class="btn_modifier" routerLink="/modifierArret/{{arret.id}}"><i class="fas fa-edit"></i></button></td>
+
+
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+
+

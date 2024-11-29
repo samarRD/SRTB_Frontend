@@ -1,0 +1,43 @@
+
+<div id="form-container">
+  <div id="form-inner-container">
+<div id="sign-in-container">
+  <h3 class="centre">Modifier vehicule</h3>
+  <form [formGroup]="Modifierform" (ngSubmit)="onSubmit()" *ngIf="C">
+    <label for="matricule">matricule</label>
+    <input type="text" name="matricule" id="matricule" formControlName="matricule" >
+    <small *ngIf="Modifierform.controls['matricule'].touched&&Modifierform.controls['matricule'].hasError('required')">*saisir une matricule</small>
+    <label for="datemise_enmarche">date mise en marche</label>
+    <input type="text" formControlName="datemise_enmarche" />
+    <small *ngIf="Modifierform.controls['datemise_enmarche'].touched&&Modifierform.controls['datemise_enmarche'].hasError('required')">*saisir la date</small>
+    <label for="taux_consommation">taux_consommation</label>
+    <input type="text" name="taux_consommation" id="taux_consommation" formControlName="taux_consommation" >
+    <small *ngIf="Modifierform.controls['taux_consommation'].touched&&Modifierform.controls['taux_consommation'].hasError('required')">*saisir le taux de consommation</small>
+    <div >
+      <label for="recipient-name" class="col-form-label" >Type :</label>
+      <select class="form-select" id="recipient-name" name="id_type" formControlName="id_type">
+        <option *ngFor="let type of TypeData ;"  [value]='type.id'>{{type.libelle}}{{type.nbr_place}} </option>
+      </select>
+      <small *ngIf="Modifierform.controls['id_type'].touched&&Modifierform.controls['id_type'].hasError('required')">*selectionner le type </small>
+    </div>
+    <div >
+      <label for="recipient-name" class="col-form-label" >Marque :</label>
+      <select class="form-select" id="recipient-name" name="id_marque" formControlName="id_marque">
+        <option *ngFor="let marque of MarqueData ;"  [value]='marque.id'>{{marque.libelle}} </option>
+      </select>
+      <small *ngIf="Modifierform.controls['id_marque'].touched&&Modifierform.controls['id_type'].hasError('required')">*selectionner la marque </small>
+    </div>
+    <div id="form-controls" class="centre">
+      <button type="submit" class="butt" [disabled]="!Modifierform.valid" >modifier</button>
+    </div>
+  </form>
+</div>
+
+
+</div>
+</div>
+
+
+
+
+

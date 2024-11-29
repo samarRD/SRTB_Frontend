@@ -1,0 +1,38 @@
+
+    <div id="form-container">
+      <div id="form-inner-container">
+    <div id="sign-in-container">
+      <h3 class="centre">Modifier utilisateur</h3>
+      <form [formGroup]="Modifierform" (ngSubmit)="onSubmit()" *ngIf="C">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" formControlName="username" >
+
+        <label for="Role">Role </label><br>
+        <select name="role" formControlName="role" >
+          <option value="Agent de planification">Agent de planification</option>
+          <option value="Responsable RH">Responsable RH</option>
+          <option value="Responsable technique">Responsable technique</option>
+          <option value="Responsable énergétique">Responsable énergétique</option>
+          <option value="Responsable recette">Responsable recette</option>
+          <option value="Chauffeur">Chauffeur</option>
+          </select>
+
+        <label for="email">Email</label>
+        <input type="email" formControlName="email" placeholder="exemple@exemple.com..."/>
+
+
+
+
+        <div id="form-controls" class="centre">
+          <button type="submit" class="butt">modifier</button>
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+</div>
+
+
+
+

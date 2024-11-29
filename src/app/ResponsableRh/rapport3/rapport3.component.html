@@ -1,0 +1,92 @@
+<section style="margin-top:100px; margin-left: 80px;">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+    <div class="col-xl-4 col-sm-6 col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between px-md-1">
+            <div class="align-self-left" >
+              <i class="fas fa-users fa-3x" style="color: rgb(154, 74, 230);" ></i>
+            </div>
+              <div class="input_container">
+                <h5 class="card-title text-uppercase text-muted mb-0">liste des chauffeurs</h5><br>
+              <select class="form-select"  [(ngModel)]="userSelected"  (change)="userChanged($event.target)">
+                <option  *ngFor="let user of userData"  [value]="user.id">{{user.username}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-sm-6 col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between px-md-5">
+            <div class="align-self-left" style="margin-left: -40px; margin-top: -5px;">
+              <i class="fas fa-calendar fa-3x" style="color: rgb(182, 223, 248);"></i>
+            </div>
+            <div class="text-end">
+              <h5 class="card-title text-uppercase text-muted mb-0">Jours de voyage</h5><br>
+              <div class="d-flex" >
+                <div class="col-md-9" style="margin-left:-40px;">
+                  <select class="form-select" [(ngModel)]="DaySelected" name="sourceBankAccount" >
+                    <option *ngFor="let day of ListDay" [value]="day">{{day}}</option>
+                  </select>
+                </div>
+                <div class="col-md-9">
+                  <select class="form-select" [(ngModel)]="Day2Selected" name="sourceBankAccount" (change)="Day2Changed()">
+                    <option *ngFor="let day of ListDay" [value]="day">{{day}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+
+
+  <div class="container" *ngIf="isDay2Selected">
+    <div class="row">
+      <div class="card-tb">
+        <div class="table-card">
+          <div class="d-flex justify-content-center">
+            <table class="table table-hover text-center" style="margin: 40px;">
+              <thead class="bg-light" >
+                <tr>
+                  <th scope="col">date</th>
+                  <th scope="col">service</th>
+                  <th scope="col">recette </th>
+                  <th scope="col">kilométrage</th>
+                </tr>
+              </thead>
+              <tbody style="background-color: rgb(232, 242, 243);">
+                <tr *ngFor="let s of PerformanceRapport">
+                  <th scope="col">{{s.date}}</th>
+                  <td>{{s.service}}</td>
+                  <td>{{s.recette}} dt</td>
+                  <td>{{s.kilometrage}} km</td>
+                </tr>
+                <tr>
+                  <th colspan="3" scope="col">recette totale :</th>
+                  <td>{{ getTotalRecette()}} dt</td>
+                </tr>
+                <tr>
+                  <th colspan="3" scope="col">kilometrage totale effectué par le chauffeur:</th>
+                  <td>{{ getTotalKilometrage()}} km</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</section>

@@ -1,0 +1,87 @@
+<h1 style="font-family: 'Times New Roman', Times, serif;margin-top: 0px ; color: rgb(74, 7, 74);" class="move">Listes des vehicules</h1>
+  <div style="padding: 5px;" >
+    <button type="button"  data-toggle="modal" data-target="#exampleModal"   class="button3"><i class="fa-solid fa-add" ></i></button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nouvelle vehicule</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="createVehicule()" [formGroup]="Ajouterform" >
+
+              <div >
+                <label for="recipient-name" class="col-form-label">Matricule:</label>
+                <input type="text" class="form-control" id="recipient-name" formControlName="matricule" >
+                <small *ngIf="Ajouterform.controls['matricule'].touched&&Ajouterform.controls['matricule'].hasError('required')">*saisir une matricule</small>
+              </div>
+              <div >
+                <label for="recipient-name" class="col-form-label">Date mise en marche:</label>
+                <input type="date" class="form-control" id="recipient-name" formControlName="datemise_enmarche"   >
+                <small *ngIf="Ajouterform.controls['datemise_enmarche'].touched&&Ajouterform.controls['datemise_enmarche'].hasError('required')">*saisir la date</small>
+              </div>
+              <div >
+                <label for="message-text" class="col-form-label">Taux de consommation:</label>
+                <input class="form-control" id="message-text" formControlName="taux_consommation"  >
+                <small *ngIf="Ajouterform.controls['taux_consommation'].touched&&Ajouterform.controls['taux_consommation'].hasError('required')">*saisir le taux de consommation</small>
+              </div>
+              <div >
+                <label for="recipient-name" class="col-form-label" >type de vehicule:</label>
+                <select  id="recipient-name" class="form-select" name="id_type" formControlName="id_type" >
+                  <option *ngFor="let type of TypeData ;" [value]='type.id'>{{type.libelle}} : {{type.nbr_places}} places</option>
+
+                  </select></div>
+                  <div >
+                    <label for="recipient-name" class="col-form-label" >marque de vehicule:</label>
+                    <select  id="recipient-name" class="form-select" name="id_marque" formControlName="id_marque" >
+                      <option *ngFor="let marque of MarqueData ;" [value]='marque.id'>{{marque.libelle}}</option>
+
+                      </select></div>
+              <div class="modal-footer">
+                <button type="button" id="c" data-dismiss="modal">Close</button>
+                <button type="submit" class="butt" [disabled]="!Ajouterform.valid">Ajouter une vehicule</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+<!---------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div class="d-flex ">
+  <div class="input-icons">
+    <i class="fa fa-search icon"></i>
+    <input class="input-field" [(ngModel)]="VehiculeFilter"  style="width: fit-content; text-align: center;" (keyup)="FilterFn()" placeholder="Filter"></div></div>
+    <p style="margin-top: -40px ;margin-left: 140px; color: purple;"><b>recherchez vehicule avec la matricule :</b></p>
+                  <br>
+                    <table style="float:left; margin-left:85px; margin-bottom:6px"class="table table-hover " >
+                      <thead  class="bg-light" >
+                        <tr>
+                          <th scope="col">ID</th>
+                          <th scope="col">Matricule</th>
+                          <th scope="col">Date mise en marche</th>
+                          <th scope="col">Taux de consommation</th>
+                          <th scope="col">Marque vehicule</th>
+                          <th scope="col">Type vehicule</th>
+                          <th scope="col"></th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let vehicule of vehiculeData">
+                          <th scope="row">{{vehicule.id}}</th>
+                          <td>{{vehicule.matricule}}</td>
+                          <td>{{vehicule.datemise_enmarche}}</td>
+                          <td>{{vehicule.taux_consommation}}</td>
+                          <td>{{vehicule.marque?.libelle}}</td>
+                          <td>{{vehicule.type?.libelle}}</td>
+                          <td><button type="button" class="btn_supprimer" (click)="delete(vehicule.id)" ><i class="fa fa-trash"></i></button></td>
+                          <td><button type="button" class="btn_modifier" routerLink="/modifierVehicule/{{vehicule.id}}"><i class="fas fa-edit"></i></button></td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+

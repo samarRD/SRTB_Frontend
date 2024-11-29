@@ -1,0 +1,17 @@
+<app-sidebar  (pageName)="PageNavigation($event)"  ></app-sidebar>
+<!--Cela signifie que lorsque l'événement pageName est émis par le composant app-sidebar,
+   le gestionnaire d'événements PageNavigation du composant DashboardAdminComponent est appelé
+    avec le nom de la nouvelle page).-->
+
+<main style="margin-top: 58px">
+<div class="container pt-4">
+<app-list-users *ngIf="page == 'users'"></app-list-users>
+<app-vehicule *ngIf="page == 'vehicules' "></app-vehicule>
+<app-ligne *ngIf="page == 'lignes' "></app-ligne>
+<app-service *ngIf="page == 'services' "></app-service>
+<app-voyage *ngIf="page == 'voyages' "></app-voyage>
+<app-type *ngIf="page == 'types' "></app-type>
+<app-marque *ngIf="page == 'marques' "></app-marque>
+<app-arret *ngIf="page == 'arrets' "> </app-arret>
+</div>
+</main>

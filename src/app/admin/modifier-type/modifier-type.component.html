@@ -1,0 +1,28 @@
+
+
+<div id="form-container">
+  <div id="form-inner-container">
+<div id="sign-in-container">
+  <h3 class="centre">Modifier le type du vehicule </h3>
+  <form [formGroup]="Modifierform" (ngSubmit)="onSubmit()" *ngIf="C">
+    <label for="libelle">libellé :</label>
+    <input type="text" name="libelle" id="libelle" formControlName="libelle" >
+    <small *ngIf="Modifierform.controls['libelle'].touched&&Modifierform.controls['libelle'].hasError('required')">*saisir une libelle</small><br>
+    <label for="nbr_places">nombre des places :</label>
+    <input type="number" name="nbr_places" id="nbr_places" formControlName="nbr_places" >
+    <small *ngIf="Modifierform.controls['nbr_places'].touched&&Modifierform.controls['nbr_places'].hasError('required')">*saisir le nombre des places</small><br>
+
+    <div id="form-controls" class="centre">
+      <button type="submit" class="butt" [disabled]="!Modifierform.valid" >modifier</button>
+    </div>
+  </form>
+</div>
+
+
+</div>
+</div>
+
+
+
+
+

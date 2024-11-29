@@ -1,0 +1,40 @@
+<h1 style="font-family: 'Times New Roman', Times, serif;margin-top: 0px ; color: rgb(74, 7, 74);" class="move">Liste des utilisateurs</h1>
+  <div class="d-flex ">
+    <div class="input-icons">
+      <i style="margin-left: 70px;" class="fa fa-search icon"></i>
+      <input class="input-field" [(ngModel)]="UserNameFilter"  style="margin-left: 70px;width: fit-content; text-align: center;" (keyup)="FilterFn()" placeholder="Filter"></div></div>
+      <p style="margin-top: -40px ;margin-left: 120px; color: purple;"><b>recherchez un utilisateur avec son nom et prénom :</b></p>
+                    <br>
+                      <table style="float:left; margin-left:85px; margin-bottom:6px"class="table table-hover" >
+                        <thead  class="bg-light" >
+                          <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">EMAIL</th>
+                            <th scope="col">ROLE</th>
+                            <th scope="col">Status</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let user of userData ;  let i = index" >
+
+                            <th scope="row">{{user.id}}</th>
+                            <td>{{user.username}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.role}}</td>
+                            <td ><button type="button" class="btn_stat" disabled>{{Rstatus(user.status)}}</button></td>
+                            <td><button type="button" class="btn_supprimer" (click)="delete(user.id)" ><i class="fa fa-trash"></i></button></td>
+                            <td><button type="button" class="btn_modifier" routerLink="/modifier/{{user.id}}"><i class="fas fa-edit"></i></button></td>
+                            <td >
+                              <div *ngIf="!isButtonHidden(user.id)" (click)="hideButton(user.id)">
+                              <button  type="button" class="btn_acc" (click)="accepter(user)"><i class="fa fa-check" ></i></button>
+                              <button type="button" class="btn_ref" (click)="refuser(user)" ><i class="fa fa-close"></i></button>
+                          </div> </td>
+
+                          </tr>
+                        </tbody>
+                      </table>
+

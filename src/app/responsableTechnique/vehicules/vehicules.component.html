@@ -1,0 +1,49 @@
+<h1 style="font-family: 'Times New Roman', Times, serif;margin-top: 80px ; color: rgb(74, 7, 74);" class="move">Liste des vehicules en pannes</h1>
+
+<div class="d-flex ">
+  <div class="input-icons">
+    <i style="margin-left: 100px;margin-top: 35px "class="fa fa-search icon"></i>
+      <input class="input-field" [(ngModel)]="VehiculeFilter"  style="margin-left: 100px;margin-top: 30px;width: fit-content; text-align: center;" (keyup)="FilterFn()" placeholder="Filter"></div></div>
+      <p style="margin-top: -40px ;margin-left: 230px;  color: purple"><b>recherchez vehicule avec sa matricule :</b></p>
+                  <br>
+
+                    <table style="float:left; margin-left: 20px;"class="table table-hover " >
+                      <thead  class="bg-light" >
+                        <tr>
+                          <th scope="col">ID</th>
+                          <th scope="col">Matricule</th>
+                          <th scope="col">Marque</th>
+                          <th scope="col">Type</th>
+                          <th scope="col">Etat de véhicule</th>
+                          <th scope="col">Description de panne</th>
+                          <th scope="col"></th>
+                          <th scope="col"></th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let vehicule of vehiculeData ;let i=index" >
+                          <th scope="row">{{vehicule.id}}</th>
+                          <td>{{vehicule.matricule}}</td>
+                          <td>{{vehicule.marque.libelle}}</td>
+                          <td>{{vehicule.type.libelle}}</td>
+                          <div hidden>  {{Rstatus(vehicule.status)}}</div>
+                          <td>
+                            <span  [ngClass]="Classvehicule"  style="border-radius:30px ;width: 80px; height : 25px; text-align: center;">{{Rstatus(vehicule.status)}}</span>
+                          </td>
+                          <td>{{vehicule.description}}</td>
+                          <td></td>
+
+                           <td >
+
+                              <button type="button" class="btn_acc" (click)="fonctionnel(vehicule)"  >En marche</button>
+                           </td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+
+
+
+
+

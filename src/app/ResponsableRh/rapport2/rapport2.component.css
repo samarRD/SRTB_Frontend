@@ -1,0 +1,15 @@
+
+.progress-bar.green {
+  background-color: rgb(63, 255, 239);
+}
+.progress-bar.pink {
+  background-color: rgb(255, 175, 252);
+}
+.card {
+  position: relative;
+  text-align: center;
+  margin:10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 20px 30px rgba(66, 66, 66, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}

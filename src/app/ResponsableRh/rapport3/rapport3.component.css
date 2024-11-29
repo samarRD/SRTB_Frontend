@@ -1,0 +1,20 @@
+.card-tb {
+  width: 1000px;
+  max-width: 1000px;
+  min-height: 300px;
+  position: relative;
+  text-align: center;
+  margin:20px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.19), 0 0 6px rgba(15, 1, 1, 0.23);
+}
+
+.card {
+  position: relative;
+  text-align: center;
+  margin:10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 20px 30px rgba(66, 66, 66, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}

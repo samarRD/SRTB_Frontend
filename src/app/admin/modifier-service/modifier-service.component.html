@@ -1,0 +1,43 @@
+
+<div id="form-container">
+  <div id="form-inner-container">
+<div id="sign-in-container">
+  <h3 class="centre">Modifier service</h3>
+  <form [formGroup]="Modifierform" (ngSubmit)="onSubmit()" *ngIf="C">
+    <div>
+    <label for="libelle">libelle :</label>
+    <input type="text" name="libelle" id="libelle" formControlName="libelle" >
+    <small *ngIf="Modifierform.controls['libelle'].touched&&Modifierform.controls['libelle'].hasError('required')">*saisir le libelle</small>
+  </div>
+  <div >
+    <label for="recipient-name" class="col-form-label" >Ligne</label>
+    <select class="form-select" id="recipient-name" name="id_ligne" formControlName="id_ligne">
+    <option *ngFor="let ligne of ligneData ;"  [value]='ligne.id'>{{ligne.libelle}}</option>
+    </select>
+    <small *ngIf="Modifierform.controls['id_ligne'].touched&&Modifierform.controls['id_ligne'].hasError('required')">*selectionner la ligne  </small>
+  </div>
+
+  <div >
+    <label for="recipient-name" class="col-form-label">heure de depart:</label>
+    <input type="time" class="form-control" id="recipient-name" formControlName="heure_depart" >
+    <small *ngIf="Modifierform.controls['heure_depart'].touched&&Modifierform.controls['heure_depart'].hasError('required')">*saisir l'heure de depart</small>
+  </div>
+  <div >
+    <label for="recipient-name" class="col-form-label">heure d'arrivée:</label>
+    <input type="time" class="form-control" id="recipient-name" formControlName="heure_arrive" >
+    <small *ngIf="Modifierform.controls['heure_arrive'].touched&&Modifierform.controls['heure_arrive'].hasError('required')">*saisir l'heure d'arrivée</small>
+  </div>
+    <div id="form-controls" class="centre">
+      <button type="submit" class="butt" [disabled]="!Modifierform.valid" >modifier</button>
+    </div>
+  </form>
+</div>
+
+
+</div>
+</div>
+
+
+
+
+
